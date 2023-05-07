@@ -17,7 +17,9 @@ class Window(QtWidgets.QMainWindow):  # наследуемся от того ж�
         # Создание "прокси" переменной для работы с формой
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        self.ui.radioButton.setText("RF129001")
+        self.rb = QtWidgets.QRadioButton("Мой RB")
+        self.ui.horizontalLayout_6.addWidget(self.rb)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
