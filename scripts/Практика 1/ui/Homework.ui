@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>862</width>
-    <height>609</height>
+    <width>924</width>
+    <height>705</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -30,8 +30,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-127</y>
-         <width>825</width>
+         <y>0</y>
+         <width>887</width>
          <height>673</height>
         </rect>
        </property>
@@ -179,7 +179,7 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>387</width>
+                   <width>418</width>
                    <height>419</height>
                   </rect>
                  </property>
@@ -1145,11 +1145,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <property name="title">
                         <string>Упарвление основными двигателями</string>
                        </property>
-                       <layout class="QHBoxLayout" name="horizontalLayout_40">
+                       <layout class="QHBoxLayout" name="horizontalLayout_16">
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_22">
+                         <layout class="QVBoxLayout" name="verticalLayout_15">
                           <item>
                            <widget class="QSlider" name="verticalSlider">
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
                             <property name="maximum">
                              <number>100</number>
                             </property>
@@ -1163,6 +1169,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </item>
                           <item>
                            <widget class="QLabel" name="label_24">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
                             <property name="text">
                              <string>Двигатель №1</string>
                             </property>
@@ -1171,54 +1189,126 @@ li.checked::marker { content: &quot;\2612&quot;; }
                          </layout>
                         </item>
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_28">
+                         <layout class="QVBoxLayout" name="verticalLayout_22">
                           <item>
-                           <widget class="QSlider" name="verticalSlider_7">
+                           <widget class="QSlider" name="verticalSlider_2">
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>100</number>
+                            </property>
+                            <property name="tracking">
+                             <bool>false</bool>
+                            </property>
                             <property name="orientation">
                              <enum>Qt::Vertical</enum>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLabel" name="label_37">
+                           <widget class="QLabel" name="label_32">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
                             <property name="text">
-                             <string>Двигатель №1</string>
+                             <string>Двигатель №2</string>
                             </property>
                            </widget>
                           </item>
                          </layout>
                         </item>
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_27">
+                         <layout class="QVBoxLayout" name="verticalLayout_23">
                           <item>
-                           <widget class="QSlider" name="verticalSlider_6">
+                           <widget class="QSlider" name="verticalSlider_3">
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>100</number>
+                            </property>
+                            <property name="tracking">
+                             <bool>false</bool>
+                            </property>
                             <property name="orientation">
                              <enum>Qt::Vertical</enum>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLabel" name="label_36">
+                           <widget class="QLabel" name="label_33">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
                             <property name="text">
-                             <string>Двигатель №1</string>
+                             <string>Двигатель №3</string>
                             </property>
                            </widget>
                           </item>
                          </layout>
                         </item>
                         <item>
-                         <layout class="QVBoxLayout" name="verticalLayout_26">
+                         <layout class="QVBoxLayout" name="verticalLayout_24">
                           <item>
-                           <widget class="QSlider" name="verticalSlider_5">
+                           <widget class="QSlider" name="verticalSlider_4">
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>100</number>
+                            </property>
+                            <property name="tracking">
+                             <bool>false</bool>
+                            </property>
                             <property name="orientation">
                              <enum>Qt::Vertical</enum>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLabel" name="label_35">
+                           <widget class="QLabel" name="label_34">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
                             <property name="text">
-                             <string>Двигатель №1</string>
+                             <string>Двигатель №4</string>
                             </property>
                            </widget>
                           </item>
@@ -1229,13 +1319,64 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           <property name="orientation">
                            <enum>Qt::Horizontal</enum>
                           </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Ignored</enum>
+                          </property>
                           <property name="sizeHint" stdset="0">
                            <size>
-                            <width>89</width>
+                            <width>40</width>
                             <height>20</height>
                            </size>
                           </property>
                          </spacer>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_25">
+                          <item>
+                           <widget class="QSlider" name="verticalSlider_5">
+                            <property name="minimumSize">
+                             <size>
+                              <width>89</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
+                            <property name="maximum">
+                             <number>100</number>
+                            </property>
+                            <property name="tracking">
+                             <bool>false</bool>
+                            </property>
+                            <property name="orientation">
+                             <enum>Qt::Vertical</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_35">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>89</width>
+                              <height>115</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>Общая тяга</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </item>
                        </layout>
                       </widget>
@@ -1518,7 +1659,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>862</width>
+     <width>924</width>
      <height>22</height>
     </rect>
    </property>
