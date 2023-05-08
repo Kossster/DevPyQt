@@ -8,7 +8,7 @@
 порядке (задом наперед).
 """
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 
 
 class Window(QtWidgets.QWidget):
@@ -18,11 +18,12 @@ class Window(QtWidgets.QWidget):
         self.initUi()
         self.initSignals()
     def initUi(self):
+        # Задаем кнопки
         self.lineEditInput = QtWidgets.QLineEdit()
         self.lineEditMirror = QtWidgets.QLineEdit()
-        self.pushButtonMirror = QtWidgets.QPushButton("РАзверни")
+        self.pushButtonMirror = QtWidgets.QPushButton("Разверни")
 
-        # Создаем слои
+        # Создаем горизонтальный и вертикальный слои
         layout1 = QtWidgets.QHBoxLayout()
         layout2 = QtWidgets.QVBoxLayout()
 
@@ -37,6 +38,14 @@ class Window(QtWidgets.QWidget):
         # Отображаем все в главном окне
         self.setLayout(layout2)
     def initSignals(self):
+        self.pushButtonMirror.clicked.connect(self.invertData)
+        self.lineEditInput.textChanged.connect(lambda x: self.lineEditMirror.setText(x[::-1]))
+
+    @QtCore.Slot()
+    def invertData(self):
+        self.lineEditMirror.setText(self.lineEditInput.text()[::-1])
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
 
