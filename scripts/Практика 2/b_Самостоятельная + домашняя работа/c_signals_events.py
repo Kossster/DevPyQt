@@ -28,6 +28,24 @@ class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.initUi()
+        # self.initSignals()
+
+    def initUi(self) -> None:
+
+        # Слои для Label и
+
+
+        # Лейблы координат
+        labelX = QtWidgets.QLabel("Координата X")
+        labelY = QtWidgets.QLabel("Координата Y")
+
+        # Лайнэдит для X и Y
+        self.lineEditX = QtWidgets.QLineEdit
+        self.lineEditY = QtWidgets.QLineEdit
+
+        # Кнопка переместить окно
+        self.pushButtonY = QtWidgets.QPushButton("Переместить окно по координатам")
 
 
 if __name__ == "__main__":
