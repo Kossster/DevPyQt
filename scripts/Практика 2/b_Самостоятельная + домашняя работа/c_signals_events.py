@@ -20,7 +20,6 @@
     * При изменении размера окна выводить его новый размер
 """
 
-
 from PySide6 import QtWidgets
 
 
@@ -29,24 +28,67 @@ class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUi()
-        # self.initSignals()
 
     def initUi(self) -> None:
+        # Создаю groupBox
+        groupBoxMovWin = QtWidgets.QGroupBox("Перемещение окна:")
+        groupBoxMoveCoor = QtWidgets.QGroupBox("Переместить в координаты:")
+        groupBoxLog = QtWidgets.QGroupBox("Лог")
 
-        # Слои для Label и
+        # Создаем Lable
+        self.LableX = QtWidgets.QLabel("X")
+        self.LableY = QtWidgets.QLabel("Y")
 
+        # Создаем pushButton
+        self.pushButtonLeftUp = QtWidgets.QPushButton("Лево/Верх")
+        self.pushButtonLeftDown = QtWidgets.QPushButton("Лево/Низ")
+        self.pushButtonRightUp = QtWidgets.QPushButton("Право/Верх")
+        self.pushButtonRightDown = QtWidgets.QPushButton("Право/Низ")
+        self.pushButtonCenter = QtWidgets.QPushButton("Центр")
+        self.pushButtonMoveCoor = QtWidgets.QPushButton("Переместить")
+        self.pushButtonLog = QtWidgets.QPushButton("Получить данные окна")
 
-        # Лейблы координат
-        labelX = QtWidgets.QLabel("Координата X")
-        labelY = QtWidgets.QLabel("Координата Y")
+        # Создаем SpinBox
+        self.SpinBoxX = QtWidgets.QSpinBox()
+        self.SpinBoxY = QtWidgets.QSpinBox()
 
-        # Лайнэдит для X и Y
-        self.lineEditX = QtWidgets.QLineEdit
-        self.lineEditY = QtWidgets.QLineEdit
+        # Создаем plainTextEdit
+        self.plainTextEditLog = QtWidgets.QPlainTextEdit()
 
-        # Кнопка переместить окно
-        self.pushButtonY = QtWidgets.QPushButton("Переместить окно по координатам")
+        # Создаем layout
+        self.layoutLeftUpRightUp = QtWidgets.QHBoxLayout()
+        self.layoutLeftUpRightUp.addWidget(self.pushButtonLeftUp)
+        self.layoutLeftUpRightUp.addWidget(self.pushButtonRightUp)
 
+        self.layoutLeftDownRightDown = QtWidgets.QHBoxLayout()
+        self.layoutLeftDownRightDown.addWidget(self.pushButtonLeftDown)
+        self.layoutLeftDownRightDown.addWidget(self.pushButtonRightDown)
+
+        self.layoutCoor = QtWidgets.QHBoxLayout()
+        self.layoutCoor.addWidget(self.LableX)
+        self.layoutCoor.addWidget(self.SpinBoxX)
+        self.layoutCoor.addWidget(self.LableY)
+        self.layoutCoor.addWidget(self.SpinBoxY)
+
+        self.layoutLog = QtWidgets.QVBoxLayout()
+        self.layoutLog.addWidget(groupBoxLog)
+        self.layoutLog.addWidget(self.plainTextEditLog)
+        self.layoutLog.addWidget(self.pushButtonLog)
+
+        self.layoutLeft = QtWidgets.QVBoxLayout()
+        self.layoutLeft.addWidget(groupBoxMovWin)
+        self.layoutLeft.addLayout(self.layoutLeftUpRightUp)
+        self.layoutLeft.addWidget(self.pushButtonCenter)
+        self.layoutLeft.addLayout(self.layoutLeftDownRightDown)
+        self.layoutLeft.addWidget(groupBoxMoveCoor)
+        self.layoutLeft.addLayout(self.layoutCoor)
+        self.layoutLeft.addWidget(self.pushButtonMoveCoor)
+
+        self.layoutMain = QtWidgets.QHBoxLayout()
+        self.layoutMain.addLayout(self.layoutLeft)
+        self.layoutMain.addLayout(self.layoutLog)
+
+        self.setLayout(self.layoutMain)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
