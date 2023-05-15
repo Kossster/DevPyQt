@@ -56,37 +56,41 @@ class Window(QtWidgets.QWidget):
         self.plainTextEditLog = QtWidgets.QPlainTextEdit()
 
         # Создаем layout
+        self.LeftLayout = QtWidgets.QVBoxLayout()
         self.layoutLeftUpRightUp = QtWidgets.QHBoxLayout()
         self.layoutLeftUpRightUp.addWidget(self.pushButtonLeftUp)
         self.layoutLeftUpRightUp.addWidget(self.pushButtonRightUp)
+        self.LeftLayout.addLayout(self.layoutLeftUpRightUp)
+
+        self.LeftLayout.addWidget(self.pushButtonCenter)
 
         self.layoutLeftDownRightDown = QtWidgets.QHBoxLayout()
         self.layoutLeftDownRightDown.addWidget(self.pushButtonLeftDown)
         self.layoutLeftDownRightDown.addWidget(self.pushButtonRightDown)
+        self.LeftLayout.addLayout(self.layoutLeftDownRightDown)
 
         self.layoutCoor = QtWidgets.QHBoxLayout()
         self.layoutCoor.addWidget(self.LableX)
         self.layoutCoor.addWidget(self.SpinBoxX)
         self.layoutCoor.addWidget(self.LableY)
         self.layoutCoor.addWidget(self.SpinBoxY)
+        groupBoxMoveCoor.setLayout(self.layoutCoor)
+        self.LeftLayout.addWidget(groupBoxMoveCoor)
 
-        self.layoutLog = QtWidgets.QVBoxLayout()
-        self.layoutLog.addWidget(groupBoxLog)
-        self.layoutLog.addWidget(self.plainTextEditLog)
-        self.layoutLog.addWidget(self.pushButtonLog)
+        self.LeftLayout.addWidget(self.pushButtonMoveCoor)
+        groupBoxMovWin.setLayout(self.LeftLayout)
 
-        self.layoutLeft = QtWidgets.QVBoxLayout()
-        self.layoutLeft.addWidget(groupBoxMovWin)
-        self.layoutLeft.addLayout(self.layoutLeftUpRightUp)
-        self.layoutLeft.addWidget(self.pushButtonCenter)
-        self.layoutLeft.addLayout(self.layoutLeftDownRightDown)
-        self.layoutLeft.addWidget(groupBoxMoveCoor)
-        self.layoutLeft.addLayout(self.layoutCoor)
-        self.layoutLeft.addWidget(self.pushButtonMoveCoor)
+        self.LayoutPTE = QtWidgets.QVBoxLayout()
+        self.LayoutPTE.addWidget(self.plainTextEditLog)
+        groupBoxLog.setLayout(self.LayoutPTE)
+
+        self.Layout_1 = QtWidgets.QVBoxLayout()
+        self.Layout_1.addWidget(groupBoxLog)
+        self.Layout_1.addWidget(self.pushButtonLog)
 
         self.layoutMain = QtWidgets.QHBoxLayout()
-        self.layoutMain.addLayout(self.layoutLeft)
-        self.layoutMain.addLayout(self.layoutLog)
+        self.layoutMain.addWidget(groupBoxMovWin)
+        self.layoutMain.addLayout(self.Layout_1)
 
         self.setLayout(self.layoutMain)
 
