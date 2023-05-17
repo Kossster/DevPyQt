@@ -18,13 +18,27 @@
    в него соответствующие значения
 """
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore, QtGui
+from ui.d_eventfilter_settings import Ui_Form
 
 
 class Window(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
+        # self.initSignals()
+
+    def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
+        key = event.key()
+        current_val = self.ui.dial.value()
+        if key == QtGui.Qt.Key.Key_Minus:
+            self.ui.dial.setValue(current_val - 1)
+        elif key == QtGui.Qt.Key.Key_Plus:
+            self.ui.dial.setValue(current_val + 1)
+        print(self.ui.dial.value())
+
 
 
 if __name__ == "__main__":
