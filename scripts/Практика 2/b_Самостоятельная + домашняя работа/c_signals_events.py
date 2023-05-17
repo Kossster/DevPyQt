@@ -20,7 +20,8 @@
     * При изменении размера окна выводить его новый размер
 """
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtGui, QtCore
+import time
 
 
 class Window(QtWidgets.QWidget):
@@ -28,6 +29,7 @@ class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUi()
+        self.initSignals()
 
     def initUi(self) -> None:
         # Создаю groupBox
@@ -47,6 +49,7 @@ class Window(QtWidgets.QWidget):
         self.pushButtonCenter = QtWidgets.QPushButton("Центр")
         self.pushButtonMoveCoor = QtWidgets.QPushButton("Переместить")
         self.pushButtonLog = QtWidgets.QPushButton("Получить данные окна")
+        self.pushButtonClean = QtWidgets.QPushButton("Отчистить лог")
 
         # Создаем SpinBox
         self.SpinBoxX = QtWidgets.QSpinBox()
@@ -87,12 +90,101 @@ class Window(QtWidgets.QWidget):
         self.Layout_1 = QtWidgets.QVBoxLayout()
         self.Layout_1.addWidget(groupBoxLog)
         self.Layout_1.addWidget(self.pushButtonLog)
+        self.Layout_1.addWidget(self.pushButtonClean)
 
         self.layoutMain = QtWidgets.QHBoxLayout()
         self.layoutMain.addWidget(groupBoxMovWin)
         self.layoutMain.addLayout(self.Layout_1)
 
         self.setLayout(self.layoutMain)
+
+    def initSignals(self) -> None:
+        self.pushButtonClean.clicked.connect(self.ClearLog)
+        self.pushButtonLog.clicked.connect(self.getScreenInfo)  # цепляем сигнал к кнопке
+        self.pushButtonLeftUp.clicked.connect(self.editPosition)
+        self.pushButtonLeftDown.clicked.connect(self.editPosition)
+        self.pushButtonRightUp.clicked.connect(self.editPosition)
+        self.pushButtonRightDown.clicked.connect(self.editPosition)
+        self.pushButtonCenter.clicked.connect(self.editPosition)
+        self.pushButtonMoveCoor.clicked.connect(self.MoveCoordinates)
+
+    def getScreenInfo(self):
+        screens_count = QtWidgets.QApplication.screens()  # создаем переменную с инфой по нашим экранам
+        log = self.plainTextEditLog.appendPlainText  # создаем переменную с методом добавления текста в наш plainTextEditLog
+
+        log(time.ctime())  # добавляем в наше plainTextEditLog актуальное время
+
+        log(f"Кол-во экранов:           {len(screens_count)}")  # добавляем инфу о кол-ве экранов
+        log(f"Текущее основное окно     {QtWidgets.QApplication.primaryScreen().name()}")
+        for screen in screens_count:
+            log(f"Разрешение экрана:    {screen.size().width()}x{screen.size().height()}")
+        log(f"Окно находится на экране  {QtWidgets.QApplication.screenAt(self.pos()).name()}")
+        log(f"Размеры окна:             Ширина {self.size().width()} Высота {self.size().height()}")
+        log(f"Минимальные размеры окна: Ширина {self.minimumWidth()} Высота {self.minimumHeight()}")
+        log(f"Текущее положение окна X:  {self.pos().x()}    Y:  {self.pos().y()}")
+        log(f"Центр приложения:         x = {self.pos().x() + self.width() / 2} y = {self.pos().y() + self.height() / 2}")
+
+    def ClearLog(self):
+        self.plainTextEditLog.clear()
+
+    def editPosition(self):
+        print(self.sender())
+        buttonText = self.sender().text()  # создаем переменную с именем кнопки на которую мы нажали
+        screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()  # ширина нашего экрана
+        screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()  # высота нашего экрана
+
+        position = {"Лево/Верх":(0, 0),
+                    "Лево/Низ": (0, screenHeight-self.height()-70),
+                    "Центр": (screenWidth/2 - self.width()/2, screenHeight/2 - self.height()/2),
+                    "Право/Верх": (screenWidth - self.width(), 0),
+                    "Право/Низ": (screenWidth - self.width(), screenHeight-self.height()-70)}
+
+        self.move(position.get(buttonText)[0], position.get(buttonText)[1])
+
+    def changeEvent(self, event: QtCore.QEvent) -> None:
+        if event.type() == QtCore.QEvent.WindowStateChange:
+            if self.isMinimized():
+                self.plainTextEditLog.appendPlainText(time.ctime() + ": окно свернуто")
+            elif self.isMaximized():
+                self.plainTextEditLog.appendPlainText(time.ctime() + ": окно развернуто")
+        if event.type() == QtCore.QEvent.ActivationChange:
+            self.plainTextEditLog.appendPlainText(time.ctime() + ": окно активно")
+
+        QtWidgets.QWidget.changeEvent(self, event)
+
+    def showEvent(self, event: QtGui.QShowEvent) -> None:
+        self.plainTextEditLog.appendPlainText(time.ctime() + ": window is show")
+
+        QtWidgets.QWidget.showEvent(self, event)
+
+    def hideEvent(self, event: QtGui.QHideEvent) -> None:
+        self.plainTextEditLog.appendPlainText(time.ctime() + ": window is hide")
+        QtWidgets.QWidget.hideEvent(self, event)
+
+    def moveEvent(self, event: QtGui.QMoveEvent) -> None:
+        print(f"moveEvent:   x = {event.pos().x()}, y = {event.pos().y()}")
+        QtWidgets.QWidget.moveEvent(self, event)
+
+    def resizeEvent(self, event: QtGui.QResizeEvent) -> None:
+        print(f"resizeEvent: w = {event.size().width()}, h = {event.size().height()}")
+        QtWidgets.QWidget.resizeEvent(self, event)
+
+    def MoveCoordinates(self):
+        x_val = self.SpinBoxX.value()
+        y_val = self.SpinBoxY.value()
+
+        self.move(x_val, y_val)
+
+    def closeEvent(self, event):
+        reply = QtWidgets.QMessageBox.question(self, "Закрыть окно",
+                                                     "Вы хотите закрыть окно?",
+                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                                     QtWidgets.QMessageBox.No)
+
+        if reply == QtWidgets.QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication()
