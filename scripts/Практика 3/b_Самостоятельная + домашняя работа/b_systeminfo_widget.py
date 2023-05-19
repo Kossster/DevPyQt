@@ -11,3 +11,10 @@
 5. установку времени задержки сделать "горячей", т.е. поток должен сразу
 реагировать на изменение времени задержки
 """
+
+import psutil
+from PySide6 import QtWidgets, QtCore
+
+class Window(QtWidgets.QWidget):
+    def __init__(self, parent=None):
+
