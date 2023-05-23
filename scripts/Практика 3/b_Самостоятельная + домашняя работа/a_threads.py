@@ -6,11 +6,11 @@ import time
 
 import psutil
 from PySide6 import QtCore
+import requests
 
 
 class SystemInfo(QtCore.QThread):
     systemInfoReceived = QtCore.Signal(list)  # TODO Создайте экземпляр класса Signal и передайте ему в конструктор тип данных передаваемого значения (в текущем случае list)
-
     def __init__(self, parent=None):
         super().__init__(parent)
         self.delay = None  # TODO создайте атрибут класса self.delay = None, для управлением задержкой получения данных
@@ -21,13 +21,13 @@ class SystemInfo(QtCore.QThread):
 
         while True:  # TODO Запустите бесконечный цикл получения информации о системе
             cpu_value = psutil.cpu_percent()  # TODO с помощью вызова функции cpu_percent() в пакете psutil получите загрузку CPU
-            ram_value = psutil.virtual_memory()  # TODO с помощью вызова функции virtual_memory().percent в пакете psutil получите загрузку RAM
+            ram_value = psutil.virtual_memory().percent  # TODO с помощью вызова функции virtual_memory().percent в пакете psutil получите загрузку RAM
             self.systemSignal.emit([cpu_value, ram_value])  # TODO с помощью метода .emit передайте в виде списка данные о загрузке CPU и RAM
             time.sleep(self.delay)  # TODO с помощью функции .sleep() приостановите выполнение цикла на время self.delay
 
 
 class WeatherHandler(QtCore.QThread):
-    # TODO Пропишите сигналы, которые считаете нужными
+    WeatherInfo = QtCore.Signal(str)  # TODO Пропишите сигналы, которые считаете нужными
 
     def __init__(self, lat, lon, parent=None):
         super().__init__(parent)
@@ -51,9 +51,9 @@ class WeatherHandler(QtCore.QThread):
 
         while self.__status:
             # TODO Примерный код ниже
-            """
             response = requests.get(self.__api_url)
             data = response.json()
-            ваш_сигнал.emit(data)
-            sleep(delay)
-            """
+            self.WeatherInfo.emit(data)
+            time.sleep(self.__delay)
+
+
