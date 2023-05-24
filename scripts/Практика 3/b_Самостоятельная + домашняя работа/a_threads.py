@@ -28,7 +28,6 @@ class SystemInfo(QtCore.QThread):
 
 class WeatherHandler(QtCore.QThread):
     WeatherInfo = QtCore.Signal(str)  # TODO Пропишите сигналы, которые считаете нужными
-
     def __init__(self, lat, lon, parent=None):
         super().__init__(parent)
 
@@ -48,7 +47,6 @@ class WeatherHandler(QtCore.QThread):
 
     def run(self) -> None:
         # TODO настройте метод для корректной работы
-
         while self.__status:
             # TODO Примерный код ниже
             response = requests.get(self.__api_url)
@@ -57,5 +55,3 @@ class WeatherHandler(QtCore.QThread):
             time.sleep(self.__delay)
 
 
-a = WeatherHandler(59.57, 30.19)
-print(a._WeatherHandler__status)
