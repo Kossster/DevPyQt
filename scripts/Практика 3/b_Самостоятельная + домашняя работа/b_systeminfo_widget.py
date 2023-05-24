@@ -16,33 +16,39 @@ from a_threads import SystemInfo
 from ui.ui_form_sys_info import Ui_MainWindow
 
 
-class Window(QtWidgets.QMainWindow):
+class WindowInfo(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.initThreads()
-        self.reportCPU()
+        self.initSignals()
+
     def initThreads(self) -> None:
-        self.thread = QtCore.QThread()
         self.systemInfo = SystemInfo()
-        self.systemInfo.moveToThread(self.thread)
-        self.thread.start()
+        self.systemInfo.start()
 
-    def reportCPU(self):
-        self.ui.label_3.setText(f"{SystemInfo.systemSignal}")
+    def initSignals(self):
+        self.systemInfo.systemInfoReceived.connect(self.reportCPU)
+        # self.ui.pushButton.clicked.connect(self.setDelay)
 
+    def reportCPU(self, list_info):
+        if self.ui.spinBox.value() == 0: # TODO при 0 программа тормозит
+            self.systemInfo.delay = 1
+        else:
+            self.systemInfo.delay = self.ui.spinBox.value()
+        self.ui.label_3.setText(f"{list_info[0]}%")
+        self.ui.label_5.setText(f"{list_info[1]}%")
 
-
-
-
+    # def setDelay(self):
+    #     self.systemInfo.delay = self.ui.spinBox.value()
 
 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication()
 
-    window = Window()
+    window = WindowInfo()
     window.show()
 
     app.exec()
