@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>844</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Диспечер задач</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_19">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>Процессы</string>
+       </attribute>
+       <widget class="QTableWidget" name="tableWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>811</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <column>
+         <property name="text">
+          <string>Имя</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Состояние</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ЦП</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Память</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Диск</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Сеть</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>CPU</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Ядро CPU</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>100</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Производительность</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Журнал приложений</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Автозагрузка</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Пользователи</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Подробности</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Служба</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>844</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_1">
+    <property name="title">
+     <string>Файлы</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Параметры</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+   </widget>
+   <addaction name="menu_1"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <action name="action">
+   <property name="text">
+    <string>Процессы</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Производительность</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>Журнал приложений</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>Автозагрузка</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>Пользователи</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>Потробности </string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>Службы</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
