@@ -27,13 +27,13 @@ class SystemInfo(QtCore.QThread):
 
 
 class WeatherHandler(QtCore.QThread):
-    WeatherInfo = QtCore.Signal(str)  # TODO Пропишите сигналы, которые считаете нужными
+    WeatherInfo = QtCore.Signal(dict)  # TODO Пропишите сигналы, которые считаете нужными
     def __init__(self, lat, lon, parent=None):
         super().__init__(parent)
 
         self.__api_url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
         self.__delay = 10
-        self.__status = None
+        self.__status = 3
 
     def setDelay(self, delay) -> None:
         """
@@ -44,6 +44,9 @@ class WeatherHandler(QtCore.QThread):
         """
 
         self.__delay = delay
+
+    def setStatus(self, val_status):
+        self.__status = val_status
 
     def run(self) -> None:
         # TODO настройте метод для корректной работы
