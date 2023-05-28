@@ -70,12 +70,12 @@ class WindowWeather(QtWidgets.QMainWindow):
         self.WeatherHandlerInform.setDelay(self.ui.spinBox_delay.value())
         self.WeatherHandlerInform.start()
         self.WeatherHandlerInform.WeatherInfo.connect(self.show_weather)
-        self.show_weather()
 
     def stopThreads(self):
         self.WeatherHandlerInform.quit()
         self.WeatherHandlerInform.setStatus(False)
         self.ui.label_5_status.setText("Поток остановлен")
+
 
     def show_weather(self, weather_data):
         latitude = weather_data['latitude']
@@ -84,12 +84,13 @@ class WindowWeather(QtWidgets.QMainWindow):
         temperature = weather_data['current_weather']['temperature']
         winddirection = weather_data['current_weather']['winddirection']
         windspeed = weather_data['current_weather']['windspeed']
+        self.ui.plainTextEdit_Inform.appendPlainText("" * 10)
         self.ui.plainTextEdit_Inform.appendPlainText(f"Широта: {latitude}, Долгота: {longitude}")
         self.ui.plainTextEdit_Inform.appendPlainText(f"Время: {currentTime}")
         self.ui.plainTextEdit_Inform.appendPlainText(f"Температура: {temperature}°C")
         self.ui.plainTextEdit_Inform.appendPlainText(f"Направление ветра: {winddirection}")
         self.ui.plainTextEdit_Inform.appendPlainText(f"Скорость ветра: {windspeed} м/c")
-
+        self.ui.plainTextEdit_Inform.appendPlainText("" * 10)
 
 
 if __name__ == '__main__':
